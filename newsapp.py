@@ -1,0 +1,41 @@
+# Akbaar padhke sunaao == news reading.
+# import requests
+# import json
+#
+#
+# def speak(str):
+#     from win32com.client import Dispatch
+#     speak = Dispatch("SAPI.SpVoice")
+#     speak.Speak(str)
+#
+#
+# if __name__ == '__main__':
+#     speak("News For Today")
+#     url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=b73f7ddb54f6448ebac011277dbddd37"
+#     news = requests.get(url).text
+#     print(news)
+
+
+# Akhbaar padhke sunaao
+import requests
+import json
+
+def speak(str):
+    from win32com.client import Dispatch
+    speak = Dispatch("SAPI.SpVoice")
+    speak.Speak(str)
+
+if __name__ == '__main__':
+    speak("News for today.. Lets begin")
+    url = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=d093053d72bc40248998159804e0e67d"
+    news = requests.get(url).text
+    news_dict = json.loads(news)
+    arts = news_dict['articles']
+    for article in arts:
+        speak(article['title'])
+        print(article['title'])
+        speak("Moving on to the next news..Listen Carefully")
+
+    speak("Thanks for listening...")
+
+
